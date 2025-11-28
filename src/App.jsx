@@ -136,7 +136,8 @@ const Navbar = ({ scrollToSection, setMobileMenuOpen, mobileMenuOpen, theme, tog
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="flex justify-between h-20 items-center">
         {/* Logo */}
-        <div className="flex-shrink-0 flex items-center cursor-pointer" onClick={() => scrollToSection('home')}>
+        <div className="flex-shrink-0 flex items-center cursor-pointer gap-3" onClick={() => scrollToSection('home')}>
+          <img src="/images/logo.jpeg" alt="AMC Connect" className="h-10 w-auto rounded-md" />
           <span className="text-2xl font-bold text-copper-600 dark:text-copper-400">AMC Connect</span> 
         </div>
 
@@ -361,45 +362,66 @@ const ServicesView = () => (
       </div>
 
       {/* Why Choose Us Section */}
-      <div className="bg-gray-50 dark:bg-noir-900 rounded-3xl p-8 md:p-12 shadow-xl border border-gray-200 dark:border-noir-800">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Why Choose Us?</h2>
-          <p className="text-copper-600 dark:text-copper-400 font-semibold tracking-wide uppercase">A Different Approach to Support</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+      <div className="mt-20">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+          
+          {/* Left Column */}
           <div className="space-y-6">
-            <h3 className="text-xl font-bold text-gray-900 dark:text-white">What You Can Expect From Us</h3>
-            <ul className="space-y-4">
-              <li className="flex items-start">
-                <div className="bg-copper-50 dark:bg-copper-400/10 p-1 rounded-full mr-3 mt-1">
-                  <CheckCircle size={16} className="text-copper-600 dark:text-copper-400" />
-                </div>
-                <span className="text-gray-700 dark:text-gray-300">We listen before we advise</span>
-              </li>
-              <li className="flex items-start">
-                <div className="bg-copper-50 dark:bg-copper-400/10 p-1 rounded-full mr-3 mt-1">
-                  <CheckCircle size={16} className="text-copper-600 dark:text-copper-400" />
-                </div>
-                <span className="text-gray-700 dark:text-gray-300">We guide you step by step if you choose to enrol to University</span>
-              </li>
-              <li className="flex items-start">
-                <div className="bg-copper-50 dark:bg-copper-400/10 p-1 rounded-full mr-3 mt-1">
-                  <CheckCircle size={16} className="text-copper-600 dark:text-copper-400" />
-                </div>
-                <span className="text-gray-700 dark:text-gray-300">We make the application process clear and manageable</span>
-              </li>
-            </ul>
-          </div>
-
-          <div className="grid grid-cols-1 gap-6">
-            {WHY_CHOOSE_US.map((item, idx) => (
-              <div key={idx} className="bg-white dark:bg-noir-950 p-4 rounded-lg border border-gray-200 dark:border-noir-800 shadow-sm">
-                <h4 className="font-bold text-gray-900 dark:text-white mb-1">{item.title}</h4>
-                <p className="text-sm text-gray-600 dark:text-gray-400">{item.desc}</p>
+            {WHY_CHOOSE_US.slice(0, 2).map((item, idx) => (
+              <div key={idx} className="bg-white dark:bg-noir-900 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-noir-800 hover:border-copper-400/50 transition-colors">
+                <h4 className="font-bold text-lg text-gray-900 dark:text-white mb-2">{item.title}</h4>
+                <p className="text-gray-600 dark:text-gray-400">{item.desc}</p>
               </div>
             ))}
           </div>
+
+          {/* Center Column */}
+          <div className="bg-gradient-to-br from-copper-500 to-copper-700 dark:from-copper-900 dark:to-noir-900 text-white p-8 rounded-2xl shadow-2xl transform lg:scale-105 z-10 relative overflow-hidden text-center">
+             <div className="relative z-10">
+                <div className="bg-white w-24 h-24 mx-auto flex items-center justify-center rounded-full mb-6 shadow-md overflow-hidden p-1">
+                  <img src="/images/logo.jpeg" alt="AMC Logo" className="w-full h-full object-contain rounded-full" />
+                </div>
+                
+                <h2 className="text-2xl font-bold mb-2">Why Choose Us?</h2>
+                <p className="text-copper-100 font-semibold tracking-wide uppercase text-sm mb-8">A Different Approach to Support</p>
+                
+                <div className="inline-block text-left">
+                  <h3 className="text-lg font-bold mb-4">What You Can Expect From Us</h3>
+                  
+                  <ul className="space-y-4">
+                    <li className="flex items-start">
+                      <div className="bg-white/20 p-1 rounded-full mr-3 mt-1 flex-shrink-0">
+                        <CheckCircle size={16} className="text-white" />
+                      </div>
+                      <span className="text-copper-50 text-sm">We listen before we advise</span>
+                    </li>
+                    <li className="flex items-start">
+                      <div className="bg-white/20 p-1 rounded-full mr-3 mt-1 flex-shrink-0">
+                        <CheckCircle size={16} className="text-white" />
+                      </div>
+                      <span className="text-copper-50 text-sm">We guide you step by step if you choose to enrol to University</span>
+                    </li>
+                    <li className="flex items-start">
+                      <div className="bg-white/20 p-1 rounded-full mr-3 mt-1 flex-shrink-0">
+                        <CheckCircle size={16} className="text-white" />
+                      </div>
+                      <span className="text-copper-50 text-sm">We make the application process clear and manageable</span>
+                    </li>
+                  </ul>
+                </div>
+             </div>
+          </div>
+
+          {/* Right Column */}
+          <div className="space-y-6">
+            {WHY_CHOOSE_US.slice(2, 4).map((item, idx) => (
+              <div key={idx} className="bg-white dark:bg-noir-900 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-noir-800 hover:border-copper-400/50 transition-colors">
+                <h4 className="font-bold text-lg text-gray-900 dark:text-white mb-2">{item.title}</h4>
+                <p className="text-gray-600 dark:text-gray-400">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+
         </div>
       </div>
     </div>

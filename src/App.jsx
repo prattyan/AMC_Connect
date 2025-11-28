@@ -226,13 +226,6 @@ const Footer = ({ onLinkClick }) => (
               <Linkedin />
             </a>
           </div>
-          
-          <div className="mt-6 grid grid-cols-2 gap-x-4 gap-y-2 border-t border-gray-800 pt-4">
-            <button onClick={() => onLinkClick('privacy-policy')} className="text-gray-400 hover:text-copper-400 text-left text-sm transition-colors">Privacy Policy</button>
-            <button onClick={() => onLinkClick('cookie-policy')} className="text-gray-400 hover:text-copper-400 text-left text-sm transition-colors">Cookie Policy</button>
-            <button onClick={() => onLinkClick('terms-conditions')} className="text-gray-400 hover:text-copper-400 text-left text-sm transition-colors">Terms & Conditions</button>
-            <button onClick={() => onLinkClick('accessibility-statement')} className="text-gray-400 hover:text-copper-400 text-left text-sm transition-colors">Accessibility Statement</button>
-          </div>
         </div>
         <div>
           <h4 className="text-lg font-semibold mb-4 text-gray-200">Contact Info</h4>
@@ -247,6 +240,13 @@ const Footer = ({ onLinkClick }) => (
           <h4 className="text-lg font-semibold mb-4 text-gray-200">Company Details</h4>
           <p className="text-gray-400">AMC Connect LTD</p> 
           <p className="text-gray-400">Company Number: {COMPANY_INFO.companyNumber}</p> 
+          
+          <div className="mt-6 grid grid-cols-2 gap-x-4 gap-y-2 border-t border-gray-800 pt-4">
+            <button onClick={() => onLinkClick('privacy-policy')} className="text-gray-400 hover:text-copper-400 text-left text-sm transition-colors">Privacy Policy</button>
+            <button onClick={() => onLinkClick('cookie-policy')} className="text-gray-400 hover:text-copper-400 text-left text-sm transition-colors">Cookie Policy</button>
+            <button onClick={() => onLinkClick('terms-conditions')} className="text-gray-400 hover:text-copper-400 text-left text-sm transition-colors">Terms & Conditions</button>
+            <button onClick={() => onLinkClick('accessibility-statement')} className="text-gray-400 hover:text-copper-400 text-left text-sm transition-colors">Accessibility Statement</button>
+          </div>
         </div>
       </div>
       <div className="border-t border-gray-800 dark:border-noir-800 mt-8 pt-8 text-center text-gray-500">

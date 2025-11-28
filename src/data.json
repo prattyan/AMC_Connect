@@ -1,0 +1,38 @@
+{
+  "stats": {
+    "successRate": "98%",
+    "partners": "50+",
+    "students": "1000+",
+    "support": "24/7"
+  },
+  "partners": [
+    "Demo",
+    "Partner 2",
+    "Partner 3",
+    "Partner 4",
+    "Partner 5",
+    "Partner 6",
+    "Partner 7",
+    "Partner 8"
+  ],
+  "testimonials": [
+    {
+      "name": "Sarah Johnson",
+      "uni": "University of West London",
+      "quote": "AMC Connect made my application process so smooth. I wouldn't have known where to start without them.",
+      "role": "Business Management"
+    },
+    {
+      "name": "Michael Chen",
+      "uni": "Anglia Ruskin University",
+      "quote": "The team was incredibly patient and helpful with my student finance application. Highly recommended!",
+      "role": "Computer Science"
+    },
+    {
+      "name": "Elena Rodriguez",
+      "uni": "University of Roehampton",
+      "quote": "Honest advice and genuine support. They really care about your future.",
+      "role": "Psychology"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Base Styles */
+body {
+  background-color: #f9fafb; /* gray-50 */
+}

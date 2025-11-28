@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import emailjs from '@emailjs/browser';
 import { 
   Phone, 
   Mail, 
@@ -87,37 +88,32 @@ const WHY_CHOOSE_US = [
 const PROCESS_STEPS = [
   {
     step: "Step 1",
-    desc: "Enter your details in order to be contacted for eligibility check.",
+    desc: "Enter your details so we can contact you for an eligibility check and understand your goals.",
     icon: <ClipboardList size={32} />
   },
   {
     step: "Step 2",
-    desc: "You will be contacted by phone by our student advisor to decide the best option for student. Further you will receive the information about chosen option for institution and course.",
+    desc: "Our student advisor will contact you by phone to discuss your background and help identify the most suitable institution and course. After the call, you will receive clear information about the recommended option.",
     icon: <Headset size={32} />
   },
   {
     step: "Step 3",
-    desc: "After decided the institution and course you will be required to provide to the agency the requested documents in order to proceed the application.",
+    desc: "Once your course and institution are agreed, the next step will be the submission of your documents so the application can move forward.",
     icon: <FileText size={32} />
   },
   {
     step: "Step 4",
-    desc: "After receiving the information and documents requested, the admission team will submit your application to College/University, and you will receive our support for the admission test.",
+    desc: "When your documents are received, our admissions team will prepare and submit your application to the chosen College or University. We will also support you in preparing for any required admission test.",
     icon: <Building2 size={32} />
   },
   {
     step: "Step 5",
-    desc: "After submitting the application, you will be contacted to book your admission assessments.",
-    icon: <CalendarCheck size={32} />
-  },
-  {
-    step: "Step 6",
-    desc: "After receiving the confirmation of acceptance from College/University you need to inform us in order to continue with the Student Finance application.",
+    desc: "When the College or University confirms your acceptance, we will guide you through the Student Finance application and provide support throughout the process.",
     icon: <CheckCircle size={32} />
   },
   {
-    step: "Step 7",
-    desc: "After being admitted to the College/University the student have to wait to receive all the information from them in regards to the induction, timetable and enrolment to the course.",
+    step: "Step 6",
+    desc: "After your place is confirmed, the College or University will send you details regarding induction, timetable, and enrolment. You will receive all the information you need before your course begins.",
     icon: <BookOpen size={32} />
   }
 ];
@@ -550,7 +546,29 @@ const AboutView = () => (
   </div>
 );
 
-const ContactView = () => (
+const ContactView = () => {
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm(
+      import.meta.env.VITE_EMAILJS_SERVICE_ID,
+      import.meta.env.VITE_EMAILJS_TEMPLATE_ID_CONTACT,
+      form.current,
+      import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+    )
+      .then((result) => {
+          console.log(result.text);
+          alert("Message sent successfully!");
+          e.target.reset();
+      }, (error) => {
+          console.log(error.text);
+          alert("Failed to send message, please try again.");
+      });
+  };
+
+  return (
   <div className="flex-grow bg-white dark:bg-noir-950 py-20 px-4 transition-colors duration-300">
     <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
@@ -626,18 +644,18 @@ const ContactView = () => (
             {/* Questionnaire Form */}
             <div id="questionnaire" className="lg:col-span-1 border-t lg:border-t-0 lg:border-l border-gray-200 dark:border-gray-700 pt-12 lg:pt-0 lg:pl-12">
                 <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Contact form</h2> 
-                <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+                <form ref={form} className="space-y-4" onSubmit={sendEmail}>
                     <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your name</label> 
-                    <input type="text" className="input-field w-full" required />
+                    <input type="text" name="user_name" className="input-field w-full" required />
                     </div>
                     <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your phone number</label> 
-                    <input type="tel" className="input-field w-full" required />
+                    <input type="tel" name="user_phone" className="input-field w-full" required />
                     </div>
                     <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your email</label> 
-                    <input type="email" className="input-field w-full" required />
+                    <input type="email" name="user_email" className="input-field w-full" required />
                     </div>
                     <div className="pt-4">
                         <button type="submit" className="btn-primary w-full">
@@ -656,9 +674,11 @@ const ContactView = () => (
       </div>
     </div>
   </div>
-);
+  );
+};
 
 const JourneyView = ({ onBack }) => {
+  const form = useRef();
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     residency: '',
@@ -670,7 +690,20 @@ const JourneyView = ({ onBack }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    
+    emailjs.sendForm(
+      import.meta.env.VITE_EMAILJS_SERVICE_ID,
+      import.meta.env.VITE_EMAILJS_TEMPLATE_ID_JOURNEY,
+      form.current,
+      import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+    )
+      .then((result) => {
+          console.log(result.text);
+          setSubmitted(true);
+      }, (error) => {
+          console.log(error.text);
+          alert("Failed to send details, please try again.");
+      });
   };
 
   const handleChange = (e) => {
@@ -715,7 +748,7 @@ const JourneyView = ({ onBack }) => {
             </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-8">
+          <form ref={form} onSubmit={handleSubmit} className="space-y-8">
             {/* Question 1 */}
             <div className="space-y-4">
               <label className="block text-lg font-semibold text-gray-900 dark:text-white">
@@ -850,28 +883,50 @@ const JourneyView = ({ onBack }) => {
   );
 };
 
-const ApplyView = ({ onBack }) => (
+const ApplyView = ({ onBack }) => {
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm(
+      import.meta.env.VITE_EMAILJS_SERVICE_ID,
+      import.meta.env.VITE_EMAILJS_TEMPLATE_ID_APPLY,
+      form.current,
+      import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+    )
+      .then((result) => {
+          console.log(result.text);
+          alert("Application sent successfully!");
+          e.target.reset();
+      }, (error) => {
+          console.log(error.text);
+          alert("Failed to send application, please try again.");
+      });
+  };
+
+  return (
   <div className="flex-grow bg-white dark:bg-noir-950 py-12 px-4 transition-colors duration-300">
     <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
       
       {/* Left Column: Application Form */}
       <div className="glass-panel p-8 rounded-2xl animate-fade-in-up">
-        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">Step 1 - Apply Today!</h2>
+        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">Apply Today!</h2>
         
-        <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+        <form ref={form} className="space-y-6" onSubmit={sendEmail}>
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">First Name <span className="text-red-500">*</span></label>
-            <input type="text" className="input-field w-full" required />
+            <input type="text" name="first_name" className="input-field w-full" required />
           </div>
           
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Surname <span className="text-red-500">*</span></label>
-            <input type="text" className="input-field w-full" required />
+            <input type="text" name="last_name" className="input-field w-full" required />
           </div>
           
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email <span className="text-red-500">*</span></label>
-            <input type="email" className="input-field w-full" required />
+            <input type="email" name="user_email" className="input-field w-full" required />
           </div>
           
           <div>
@@ -880,18 +935,18 @@ const ApplyView = ({ onBack }) => (
               <span className="inline-flex items-center px-3 rounded-l-lg border border-r-0 border-gray-300 dark:border-noir-800 bg-gray-100 dark:bg-noir-800 text-gray-500 dark:text-gray-400 text-sm">
                 🇬🇧
               </span>
-              <input type="tel" placeholder="07400 123456" className="input-field w-full rounded-l-none" required />
+              <input type="tel" name="user_phone" placeholder="07400 123456" className="input-field w-full rounded-l-none" required />
             </div>
           </div>
           
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Referral Agent Name</label>
-            <input type="text" className="input-field w-full" />
+            <input type="text" name="referral_agent" className="input-field w-full" />
           </div>
           
           <div className="flex items-start pt-2">
             <div className="flex items-center h-5">
-              <input id="gdpr" type="checkbox" className="w-4 h-4 text-copper-600 border-gray-300 rounded focus:ring-copper-500 dark:focus:ring-copper-400 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600" required />
+              <input id="gdpr" name="gdpr_consent" type="checkbox" className="w-4 h-4 text-copper-600 border-gray-300 rounded focus:ring-copper-500 dark:focus:ring-copper-400 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600" required />
             </div>
             <div className="ml-3 text-sm">
               <label htmlFor="gdpr" className="font-medium text-gray-700 dark:text-gray-300">GDPR <span className="text-red-500">*</span></label>
@@ -951,7 +1006,8 @@ const ApplyView = ({ onBack }) => (
 
     </div>
   </div>
-);
+  );
+};
 
 
 

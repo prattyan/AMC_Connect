@@ -276,7 +276,7 @@ const HomeView = ({ scrollToSection, onJourneyClick }) => (
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           
           {/* Left Column: Checklist & Intro */}
-          <div className="bg-white dark:bg-noir-900 p-8 rounded-2xl shadow-xl border border-gray-100 dark:border-noir-800">
+          <div className="glass-panel p-8 rounded-2xl animate-fade-in-up">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
               We are to help you take the next step with clarity.
             </h2>
@@ -301,14 +301,14 @@ const HomeView = ({ scrollToSection, onJourneyClick }) => (
                <p className="text-3xl font-extrabold text-copper-600 dark:text-copper-400">FREE!</p>
             </div>
 
-            <button onClick={onJourneyClick} className="w-full sm:w-auto bg-copper-500 hover:bg-copper-600 dark:bg-copper-400 dark:hover:bg-copper-500 text-white dark:text-noir-950 text-lg font-bold py-4 px-8 rounded-lg shadow-lg transition-all">
+            <button onClick={onJourneyClick} className="w-full sm:w-auto btn-primary text-lg">
               Start your journey today! 
             </button>
           </div>
 
           {/* Right Column: Main Message */}
-          <div className="space-y-8">
-            <div className="bg-white dark:bg-noir-800 p-8 rounded-2xl shadow-2xl border border-gray-200 dark:border-noir-800 text-gray-900 dark:text-white">
+          <div className="space-y-8 animate-fade-in-up animation-delay-200">
+            <div className="glass-panel p-8 rounded-2xl text-gray-900 dark:text-white">
               <h1 className="text-3xl md:text-4xl font-extrabold leading-tight mb-6">
                 You Are Not Alone in Your <span className="text-copper-600 dark:text-copper-400">University Journey</span> 
               </h1>
@@ -329,7 +329,7 @@ const HomeView = ({ scrollToSection, onJourneyClick }) => (
               <div className="pt-4">
                 <button 
                   onClick={() => scrollToSection('contact')}
-                  className="w-full bg-copper-500 hover:bg-copper-600 dark:bg-copper-400 dark:hover:bg-copper-500 text-white dark:text-noir-950 font-bold py-3 px-6 rounded-full shadow-lg flex items-center justify-center transition-transform transform hover:scale-105"
+                  className="w-full btn-primary flex items-center justify-center"
                 >
                   <span className="mr-2">Help Me Understand My Options – questionnaire</span> 
                   <ArrowRight size={20} />
@@ -345,16 +345,19 @@ const HomeView = ({ scrollToSection, onJourneyClick }) => (
 );
 
 const ServicesView = () => (
-  <div className="py-20 px-4 bg-white dark:bg-noir-950 flex-grow transition-colors duration-300">
+  <div className="section-padding bg-white dark:bg-noir-950 flex-grow transition-colors duration-300">
     <div className="max-w-7xl mx-auto">
-      <div className="text-center mb-16">
+      <div className="text-center mb-16 animate-fade-in-up">
         <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Our Services</h2> 
+        <div className="w-24 h-1 bg-copper-500 mx-auto rounded-full"></div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
         {SERVICES.map((service, index) => (
-          <div key={index} className="bg-gray-50 dark:bg-noir-900 rounded-xl shadow-lg p-8 hover:shadow-xl transition-all border border-gray-200 dark:border-noir-800 hover:border-copper-400/50 group">
-            <div className="text-copper-600 dark:text-copper-400 mb-4 group-hover:scale-110 transition-transform">{service.icon}</div>
+          <div key={index} className={`glass-panel p-8 rounded-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group animate-fade-in-up animation-delay-${(index + 1) * 200}`}>
+            <div className="text-copper-600 dark:text-copper-400 mb-6 group-hover:scale-110 transition-transform duration-300 bg-copper-50 dark:bg-copper-900/20 w-16 h-16 rounded-full flex items-center justify-center">
+              {service.icon}
+            </div>
             <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">{service.title}</h3>
             <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">{service.desc}</p>
           </div>
@@ -368,7 +371,7 @@ const ServicesView = () => (
           {/* Left Column */}
           <div className="space-y-6">
             {WHY_CHOOSE_US.slice(0, 2).map((item, idx) => (
-              <div key={idx} className="bg-white dark:bg-noir-900 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-noir-800 hover:border-copper-400/50 transition-colors">
+              <div key={idx} className="glass-panel p-6 rounded-xl hover:border-copper-400/50 transition-colors">
                 <h4 className="font-bold text-lg text-gray-900 dark:text-white mb-2">{item.title}</h4>
                 <p className="text-gray-600 dark:text-gray-400">{item.desc}</p>
               </div>
@@ -415,7 +418,7 @@ const ServicesView = () => (
           {/* Right Column */}
           <div className="space-y-6">
             {WHY_CHOOSE_US.slice(2, 4).map((item, idx) => (
-              <div key={idx} className="bg-white dark:bg-noir-900 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-noir-800 hover:border-copper-400/50 transition-colors">
+              <div key={idx} className="glass-panel p-6 rounded-xl hover:border-copper-400/50 transition-colors">
                 <h4 className="font-bold text-lg text-gray-900 dark:text-white mb-2">{item.title}</h4>
                 <p className="text-gray-600 dark:text-gray-400">{item.desc}</p>
               </div>
@@ -455,7 +458,7 @@ const AboutView = () => (
 
         {/* Right Column: How We Help & Team */}
         <div className="space-y-8">
-          <div className="bg-gray-50 dark:bg-noir-900 p-8 rounded-2xl border border-gray-200 dark:border-noir-800 shadow-lg">
+          <div className="glass-panel p-8 rounded-2xl shadow-lg animate-fade-in-up" style={{animationDelay: '0.2s'}}>
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">How We Help</h2>
             <div className="space-y-4 text-gray-600 dark:text-gray-400">
               <p>
@@ -470,7 +473,7 @@ const AboutView = () => (
             </div>
           </div>
 
-          <div className="bg-white dark:bg-noir-900 p-8 rounded-2xl border border-gray-200 dark:border-noir-800 shadow-lg">
+          <div className="glass-panel p-8 rounded-2xl shadow-lg animate-fade-in-up" style={{animationDelay: '0.4s'}}>
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Meet Our Team</h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -512,7 +515,7 @@ const ContactView = () => (
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Contact Info Card */}
-        <div className="bg-gray-50 dark:bg-noir-900 p-8 rounded-2xl shadow-lg h-full border border-gray-200 dark:border-noir-800">
+        <div className="glass-panel p-8 rounded-2xl shadow-lg h-full animate-fade-in-up">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">Contact Information</h2>
           <div className="space-y-6">
             <div className="flex items-start">
@@ -573,23 +576,23 @@ const ContactView = () => (
         </div>
 
         {/* Contact Form */}
-        <div className="bg-gray-50 dark:bg-noir-900 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-noir-800">
+        <div className="glass-panel p-8 rounded-2xl animate-fade-in-up" style={{animationDelay: '0.2s'}}>
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Questionnaire form+</h2> 
           <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your name</label> 
-              <input type="text" className="w-full px-4 py-2 bg-white dark:bg-noir-950 border border-gray-300 dark:border-noir-800 text-gray-900 dark:text-white rounded-lg focus:ring-2 focus:ring-copper-500 dark:focus:ring-copper-400 focus:border-transparent outline-none" required />
+              <input type="text" className="input-field w-full" required />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your phone number</label> 
-              <input type="tel" className="w-full px-4 py-2 bg-white dark:bg-noir-950 border border-gray-300 dark:border-noir-800 text-gray-900 dark:text-white rounded-lg focus:ring-2 focus:ring-copper-500 dark:focus:ring-copper-400 focus:border-transparent outline-none" required />
+              <input type="tel" className="input-field w-full" required />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your email</label> 
-              <input type="email" className="w-full px-4 py-2 bg-white dark:bg-noir-950 border border-gray-300 dark:border-noir-800 text-gray-900 dark:text-white rounded-lg focus:ring-2 focus:ring-copper-500 dark:focus:ring-copper-400 focus:border-transparent outline-none" required />
+              <input type="email" className="input-field w-full" required />
             </div>
             <div className="pt-4">
-                <button type="submit" className="w-full bg-copper-500 hover:bg-copper-600 dark:bg-copper-400 dark:hover:bg-copper-500 text-white dark:text-noir-950 font-bold py-3 rounded-lg transition-colors">
+                <button type="submit" className="btn-primary w-full">
                     Send Message
                 </button>
             </div>
@@ -626,7 +629,7 @@ const JourneyView = ({ onBack }) => {
   if (submitted) {
     return (
       <div className="flex-grow flex items-center justify-center bg-white dark:bg-noir-950 py-20 px-4 transition-colors duration-300">
-        <div className="max-w-2xl w-full bg-white dark:bg-noir-900 p-8 rounded-2xl shadow-xl border border-gray-200 dark:border-noir-800 text-center">
+        <div className="glass-panel max-w-2xl w-full p-8 rounded-2xl text-center animate-fade-in-up">
           <div className="mb-6 flex justify-center">
             <div className="bg-green-100 dark:bg-green-900/30 p-4 rounded-full">
               <CheckCircle size={48} className="text-green-600 dark:text-green-400" />
@@ -638,7 +641,7 @@ const JourneyView = ({ onBack }) => {
           </p>
           <button 
             onClick={onBack}
-            className="bg-copper-500 hover:bg-copper-600 dark:bg-copper-400 dark:hover:bg-copper-500 text-white dark:text-noir-950 font-bold py-3 px-8 rounded-full shadow-lg transition-colors"
+            className="btn-primary"
           >
             Back to Home
           </button>
@@ -650,7 +653,7 @@ const JourneyView = ({ onBack }) => {
   return (
     <div className="flex-grow bg-white dark:bg-noir-950 py-12 px-4 transition-colors duration-300">
       <div className="max-w-3xl mx-auto">
-        <div className="bg-white dark:bg-noir-900 p-8 md:p-12 rounded-2xl shadow-xl border border-gray-200 dark:border-noir-800">
+        <div className="glass-panel p-8 md:p-12 rounded-2xl animate-fade-in-up">
           <div className="mb-10 text-center">
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
               Begin your university journey in the United Kingdom
@@ -698,7 +701,7 @@ const JourneyView = ({ onBack }) => {
                     name="residencyOther"
                     value={formData.residencyOther}
                     onChange={handleChange}
-                    className="mt-2 w-full px-4 py-2 bg-gray-50 dark:bg-noir-950 border border-gray-300 dark:border-noir-800 text-gray-900 dark:text-white rounded-lg focus:ring-2 focus:ring-copper-500 focus:border-transparent outline-none"
+                    className="input-field mt-2 w-full"
                     placeholder="Please specify your status"
                     required
                   />
@@ -781,7 +784,7 @@ const JourneyView = ({ onBack }) => {
             </div>
 
             <div className="pt-8 flex flex-col sm:flex-row gap-4">
-              <button type="submit" className="flex-1 bg-copper-500 hover:bg-copper-600 dark:bg-copper-400 dark:hover:bg-copper-500 text-white dark:text-noir-950 font-bold py-4 px-8 rounded-lg shadow-lg transition-all text-lg">
+              <button type="submit" className="btn-primary flex-1 text-lg">
                 Submit Application
               </button>
               <button type="button" onClick={onBack} className="flex-1 bg-gray-200 hover:bg-gray-300 dark:bg-noir-800 dark:hover:bg-noir-700 text-gray-700 dark:text-gray-300 font-bold py-4 px-8 rounded-lg shadow-lg transition-colors text-lg">
@@ -800,23 +803,23 @@ const ApplyView = ({ onBack }) => (
     <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
       
       {/* Left Column: Application Form */}
-      <div className="bg-white dark:bg-noir-900 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-noir-800">
+      <div className="glass-panel p-8 rounded-2xl animate-fade-in-up">
         <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">Step 1 - Apply Today!</h2>
         
         <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">First Name <span className="text-red-500">*</span></label>
-            <input type="text" className="w-full px-4 py-3 bg-gray-50 dark:bg-noir-950 border border-gray-300 dark:border-noir-800 text-gray-900 dark:text-white rounded-lg focus:ring-2 focus:ring-copper-500 focus:border-transparent outline-none" required />
+            <input type="text" className="input-field w-full" required />
           </div>
           
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Surname <span className="text-red-500">*</span></label>
-            <input type="text" className="w-full px-4 py-3 bg-gray-50 dark:bg-noir-950 border border-gray-300 dark:border-noir-800 text-gray-900 dark:text-white rounded-lg focus:ring-2 focus:ring-copper-500 focus:border-transparent outline-none" required />
+            <input type="text" className="input-field w-full" required />
           </div>
           
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email <span className="text-red-500">*</span></label>
-            <input type="email" className="w-full px-4 py-3 bg-gray-50 dark:bg-noir-950 border border-gray-300 dark:border-noir-800 text-gray-900 dark:text-white rounded-lg focus:ring-2 focus:ring-copper-500 focus:border-transparent outline-none" required />
+            <input type="email" className="input-field w-full" required />
           </div>
           
           <div>
@@ -825,13 +828,13 @@ const ApplyView = ({ onBack }) => (
               <span className="inline-flex items-center px-3 rounded-l-lg border border-r-0 border-gray-300 dark:border-noir-800 bg-gray-100 dark:bg-noir-800 text-gray-500 dark:text-gray-400 text-sm">
                 🇬🇧
               </span>
-              <input type="tel" placeholder="07400 123456" className="w-full px-4 py-3 bg-gray-50 dark:bg-noir-950 border border-gray-300 dark:border-noir-800 text-gray-900 dark:text-white rounded-r-lg focus:ring-2 focus:ring-copper-500 focus:border-transparent outline-none" required />
+              <input type="tel" placeholder="07400 123456" className="input-field w-full rounded-l-none" required />
             </div>
           </div>
           
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Referral Agent Name</label>
-            <input type="text" className="w-full px-4 py-3 bg-gray-50 dark:bg-noir-950 border border-gray-300 dark:border-noir-800 text-gray-900 dark:text-white rounded-lg focus:ring-2 focus:ring-copper-500 focus:border-transparent outline-none" />
+            <input type="text" className="input-field w-full" />
           </div>
           
           <div className="flex items-start pt-2">
@@ -845,10 +848,10 @@ const ApplyView = ({ onBack }) => (
           </div>
           
           <div className="pt-4 flex flex-col sm:flex-row gap-4">
-            <button type="submit" className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-colors">
+            <button type="submit" className="btn-primary flex-1">
               Submit
             </button>
-            <button type="button" onClick={onBack} className="bg-gray-200 hover:bg-gray-300 dark:bg-noir-800 dark:hover:bg-noir-700 text-gray-700 dark:text-gray-300 font-bold py-3 px-8 rounded-full shadow-lg transition-colors">
+            <button type="button" onClick={onBack} className="flex-1 bg-gray-200 hover:bg-gray-300 dark:bg-noir-800 dark:hover:bg-noir-700 text-gray-700 dark:text-gray-300 font-bold py-3 px-8 rounded-full shadow-lg transition-colors">
               Back to Home
             </button>
           </div>
@@ -856,25 +859,25 @@ const ApplyView = ({ onBack }) => (
       </div>
 
       {/* Right Column: Our Process Timeline */}
-      <div className="bg-[#1a2238] text-white p-8 rounded-2xl shadow-lg relative overflow-hidden">
-        <h2 className="text-3xl font-bold mb-12">Our Process</h2>
+      <div className="glass-panel p-8 rounded-2xl relative overflow-hidden animate-fade-in-up" style={{animationDelay: '0.2s'}}>
+        <h2 className="text-3xl font-bold mb-12 text-gray-900 dark:text-white">Our Process</h2>
         
         <div className="space-y-12 relative">
           {/* Vertical Line */}
-          <div className="absolute left-8 top-4 bottom-4 w-0.5 bg-gray-600/50 hidden md:block"></div>
+          <div className="absolute left-8 top-4 bottom-4 w-0.5 bg-gray-300 dark:bg-gray-600/50 hidden md:block"></div>
 
           {PROCESS_STEPS.map((step, index) => (
             <div key={index} className="relative flex flex-col md:flex-row items-start md:items-center group">
               {/* Step Label */}
               <div className="md:w-24 flex-shrink-0 mb-4 md:mb-0 z-10">
-                <div className="bg-white text-[#1a2238] font-bold py-1 px-4 rounded-r-full inline-block shadow-md">
+                <div className="bg-copper-500 text-white font-bold py-1 px-4 rounded-r-full inline-block shadow-md">
                   {step.step}
                 </div>
               </div>
               
               {/* Content */}
               <div className="flex-grow md:pl-8 md:pr-4">
-                <p className="text-sm leading-relaxed text-gray-300">
+                <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
                   {step.desc}
                 </p>
                 {/* Dotted Arrow Separator (Visual only) */}
@@ -886,7 +889,7 @@ const ApplyView = ({ onBack }) => (
               </div>
 
               {/* Icon */}
-              <div className="flex-shrink-0 mt-4 md:mt-0 bg-white/10 p-3 rounded-lg backdrop-blur-sm border border-white/20">
+              <div className="flex-shrink-0 mt-4 md:mt-0 bg-copper-50 dark:bg-white/10 p-3 rounded-lg backdrop-blur-sm border border-copper-100 dark:border-white/20 text-copper-600 dark:text-copper-400">
                 {step.icon}
               </div>
             </div>

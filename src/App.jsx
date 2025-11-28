@@ -137,7 +137,7 @@ const Navbar = ({ scrollToSection, setMobileMenuOpen, mobileMenuOpen, theme, tog
       <div className="flex justify-between h-20 items-center">
         {/* Logo */}
         <div className="flex-shrink-0 flex items-center cursor-pointer gap-3 group" onClick={() => scrollToSection('home')}>
-          <span className="text-2xl font-bold text-copper-600 dark:text-copper-400 transition-colors duration-300 group-hover:text-copper-700 dark:group-hover:text-copper-300">AMC Connect</span> 
+          <img src="/images/logo.jpeg" alt="AMC Connect" className="h-14 w-auto rounded-full" />
         </div>
 
         {/* Desktop Menu */}

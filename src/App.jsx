@@ -32,7 +32,7 @@ const COMPANY_INFO = {
   linkedin: "https://www.linkedin.com/company/amc-connect-uk/?viewAsMember=true", 
   facebook: "(will provide soon)",
   companyNumber: "16252583", 
-  hours: "Mon – Sat 10:00-18:00" 
+  hours: "Monday to Saturday 10:00 - 18:00" 
 };
 
 const NAV_LINKS = [
@@ -45,7 +45,7 @@ const NAV_LINKS = [
 const SERVICES = [
   {
     title: "Courses",
-    desc: "Undergraduate, postgraduate courses, HND/ Top – up, all UK locations.", 
+    desc: "Whether you are interested in Undergraduate or Postgraduate study, HND programmes, or Top-Up courses, we can guide you through options available across the United Kingdom.", 
     icon: <BookOpen size={32} />
   },
   {
@@ -281,97 +281,11 @@ const TopBar = () => (
   </div>
 );
 
-const Partners = ({ partners = [1, 2, 3, 4, 5, 6, 7, 8] }) => (
-  <div className="py-12 bg-gray-50 dark:bg-noir-900 border-y border-gray-200 dark:border-noir-800 overflow-hidden">
-    <div className="max-w-7xl mx-auto px-4 mb-8 text-center">
-      <p className="text-sm font-bold text-gray-500 uppercase tracking-widest">Trusted by Leading Universities</p>
-    </div>
-    <div className="flex space-x-12 animate-scroll whitespace-nowrap">
-      {partners.map((partner, i) => (
-        <div key={i} className="flex-shrink-0 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100">
-          <div className="h-12 w-32 bg-gray-300 dark:bg-gray-700 rounded flex items-center justify-center text-xs text-gray-500 overflow-hidden">
-             {typeof partner === 'string' && partner.startsWith('http') ? (
-                <img src={partner} alt="Partner Logo" className="h-full w-full object-contain" />
-             ) : (
-                <span>{partner}</span>
-             )}
-          </div>
-        </div>
-      ))}
-      {/* Duplicate for infinite scroll effect */}
-      {partners.map((partner, i) => (
-        <div key={`dup-${i}`} className="flex-shrink-0 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100">
-          <div className="h-12 w-32 bg-gray-300 dark:bg-gray-700 rounded flex items-center justify-center text-xs text-gray-500 overflow-hidden">
-             {typeof partner === 'string' && partner.startsWith('http') ? (
-                <img src={partner} alt="Partner Logo" className="h-full w-full object-contain" />
-             ) : (
-                <span>{partner}</span>
-             )}
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
-);
 
-const Testimonials = ({ testimonials = [] }) => (
-  <div className="py-20 bg-white dark:bg-noir-950">
-    <div className="max-w-7xl mx-auto px-4">
-      <div className="text-center mb-16">
-        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">Student Success Stories</h2>
-        <div className="w-24 h-1 bg-copper-500 mx-auto rounded-full"></div>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {testimonials.map((testimonial, idx) => (
-          <div key={idx} className="glass-panel p-8 rounded-xl relative">
-            <div className="text-copper-500 mb-4">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H15.017C14.4647 8 14.017 8.44772 14.017 9V11C14.017 11.5523 13.5693 12 13.017 12H12.017V5H22.017V15C22.017 18.3137 19.3307 21 16.017 21H14.017ZM5.0166 21L5.0166 18C5.0166 16.8954 5.91203 16 7.0166 16H10.0166C10.5689 16 11.0166 15.5523 11.0166 15V9C11.0166 8.44772 10.5689 8 10.0166 8H6.0166C5.46432 8 5.0166 8.44772 5.0166 9V11C5.0166 11.5523 4.56889 12 4.0166 12H3.0166V5H13.0166V15C13.0166 18.3137 10.3303 21 7.0166 21H5.0166Z" />
-              </svg>
-            </div>
-            <p className="text-gray-600 dark:text-gray-300 mb-6 italic">"{testimonial.quote}"</p>
-            <div className="flex items-center">
-              <div>
-                <p className="font-bold text-gray-900 dark:text-white">{testimonial.name}</p>
-                <p className="text-xs text-copper-600 dark:text-copper-400">{testimonial.role}</p>
-                <p className="text-xs text-gray-500">{testimonial.uni}</p>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </div>
-);
-
-const Stats = ({ stats = { successRate: "98%", partners: "50+", students: "1000+", support: "24/7" } }) => (
-  <div className="bg-copper-600 dark:bg-copper-900 py-12 text-white">
-    <div className="max-w-7xl mx-auto px-4">
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-        <div>
-          <p className="text-4xl font-bold mb-2">{stats.successRate}</p>
-          <p className="text-copper-100 text-sm uppercase tracking-wide">Success Rate</p>
-        </div>
-        <div>
-          <p className="text-4xl font-bold mb-2">{stats.partners}</p>
-          <p className="text-copper-100 text-sm uppercase tracking-wide">Partner Universities</p>
-        </div>
-        <div>
-          <p className="text-4xl font-bold mb-2">{stats.students}</p>
-          <p className="text-copper-100 text-sm uppercase tracking-wide">Students Placed</p>
-        </div>
-        <div>
-          <p className="text-4xl font-bold mb-2">{stats.support}</p>
-          <p className="text-copper-100 text-sm uppercase tracking-wide">Support Available</p>
-        </div>
-      </div>
-    </div>
-  </div>
-);
 
 // --- Page Views ---
 
-const HomeView = ({ scrollToSection, onJourneyClick, stats, partners, testimonials }) => (
+const HomeView = ({ scrollToSection, onJourneyClick }) => (
   <div className="flex-grow bg-white dark:bg-noir-950 transition-colors duration-300">
     {/* Hero Section */}
     <div className="relative overflow-hidden min-h-[80vh] flex items-center">
@@ -421,7 +335,7 @@ const HomeView = ({ scrollToSection, onJourneyClick, stats, partners, testimonia
               </div>
               <div className="flex items-center">
                 <CheckCircle className="text-copper-500 mr-2" size={20} />
-                <span>{stats?.successRate || '98%'} Success Rate</span>
+                <span>98% Success Rate</span>
               </div>
             </div>
           </div>
@@ -468,10 +382,6 @@ const HomeView = ({ scrollToSection, onJourneyClick, stats, partners, testimonia
         </div>
       </div>
     </div>
-
-    <Stats stats={stats} />
-    <Partners partners={partners} />
-    <Testimonials testimonials={testimonials} />
   </div>
 );
 
@@ -1043,291 +953,14 @@ const ApplyView = ({ onBack }) => (
   </div>
 );
 
-// --- Admin & Data ---
 
-const INITIAL_STATS = {
-  successRate: "98%",
-  partners: "50+",
-  students: "1000+",
-  support: "24/7"
-};
-
-const INITIAL_PARTNERS = [1, 2, 3, 4, 5, 6, 7, 8];
-
-const INITIAL_TESTIMONIALS = [
-  {
-    name: "Sarah Johnson",
-    uni: "University of West London",
-    quote: "AMC Connect made my application process so smooth. I wouldn't have known where to start without them.",
-    role: "Business Management"
-  },
-  {
-    name: "Michael Chen",
-    uni: "Anglia Ruskin University",
-    quote: "The team was incredibly patient and helpful with my student finance application. Highly recommended!",
-    role: "Computer Science"
-  },
-  {
-    name: "Elena Rodriguez",
-    uni: "University of Roehampton",
-    quote: "Honest advice and genuine support. They really care about your future.",
-    role: "Psychology"
-  }
-];
-
-const AdminView = ({ 
-  stats, setStats, 
-  partners, setPartners, 
-  testimonials, setTestimonials, 
-  onBack,
-  onSave
-}) => {
-  const [activeTab, setActiveTab] = useState('stats');
-  const [password, setPassword] = useState('');
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  if (!isAuthenticated) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-noir-950">
-        <div className="bg-white dark:bg-noir-900 p-8 rounded-xl shadow-lg max-w-md w-full">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Admin Access</h2>
-          <input 
-            type="password" 
-            placeholder="Enter Password" 
-            className="input-field w-full mb-4"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <div className="flex gap-4">
-            <button 
-              onClick={() => password === 'admin123' ? setIsAuthenticated(true) : alert('Incorrect Password')}
-              className="btn-primary flex-1"
-            >
-              Login
-            </button>
-            <button onClick={onBack} className="text-gray-500 hover:text-gray-700">Back</button>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  const handleStatChange = (key, value) => {
-    setStats(prev => ({ ...prev, [key]: value }));
-  };
-
-  const handlePartnerChange = (index, value) => {
-    const newPartners = [...partners];
-    newPartners[index] = value;
-    setPartners(newPartners);
-  };
-
-  const addPartner = () => {
-    setPartners([...partners, `Partner ${partners.length + 1}`]);
-  };
-
-  const removePartner = (index) => {
-    setPartners(partners.filter((_, i) => i !== index));
-  };
-
-  const handleTestimonialChange = (index, field, value) => {
-    const newTestimonials = [...testimonials];
-    newTestimonials[index] = { ...newTestimonials[index], [field]: value };
-    setTestimonials(newTestimonials);
-  };
-
-  const addTestimonial = () => {
-    setTestimonials([...testimonials, { name: "New Student", uni: "University", quote: "Feedback...", role: "Course" }]);
-  };
-
-  const removeTestimonial = (index) => {
-    setTestimonials(testimonials.filter((_, i) => i !== index));
-  };
-
-  return (
-    <div className="min-h-screen bg-gray-50 dark:bg-noir-950 p-8">
-      <div className="max-w-6xl mx-auto">
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Admin Dashboard</h1>
-          <div className="flex gap-4">
-            <button onClick={onSave} className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded shadow-lg transition-colors">
-              Save Changes
-            </button>
-            <button onClick={onBack} className="btn-primary">Back to Site</button>
-          </div>
-        </div>
-
-        <div className="flex space-x-4 mb-8 border-b border-gray-200 dark:border-gray-700">
-          {['stats', 'partners', 'testimonials'].map(tab => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`pb-4 px-4 capitalize font-medium transition-colors ${
-                activeTab === tab 
-                  ? 'border-b-2 border-copper-500 text-copper-600' 
-                  : 'text-gray-500 hover:text-gray-700'
-              }`}
-            >
-              {tab}
-            </button>
-          ))}
-        </div>
-
-        <div className="bg-white dark:bg-noir-900 rounded-xl shadow-sm p-8">
-          {activeTab === 'stats' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {Object.entries(stats).map(([key, value]) => (
-                <div key={key}>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 capitalize">
-                    {key.replace(/([A-Z])/g, ' $1').trim()}
-                  </label>
-                  <input
-                    type="text"
-                    value={value}
-                    onChange={(e) => handleStatChange(key, e.target.value)}
-                    className="input-field w-full"
-                  />
-                </div>
-              ))}
-            </div>
-          )}
-
-          {activeTab === 'partners' && (
-            <div className="space-y-4">
-              {partners.map((partner, index) => (
-                <div key={index} className="flex gap-4">
-                  <input
-                    type="text"
-                    value={partner}
-                    onChange={(e) => handlePartnerChange(index, e.target.value)}
-                    className="input-field flex-grow"
-                    placeholder="Partner Name or Logo URL"
-                  />
-                  <button 
-                    onClick={() => removePartner(index)}
-                    className="text-red-500 hover:text-red-700"
-                  >
-                    Remove
-                  </button>
-                </div>
-              ))}
-              <button onClick={addPartner} className="text-copper-600 font-medium hover:underline">
-                + Add Partner
-              </button>
-            </div>
-          )}
-
-          {activeTab === 'testimonials' && (
-            <div className="space-y-8">
-              {testimonials.map((testimonial, index) => (
-                <div key={index} className="border border-gray-200 dark:border-gray-700 p-6 rounded-lg relative">
-                  <button 
-                    onClick={() => removeTestimonial(index)}
-                    className="absolute top-4 right-4 text-red-500 hover:text-red-700"
-                  >
-                    Remove
-                  </button>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium mb-1">Name</label>
-                      <input
-                        value={testimonial.name}
-                        onChange={(e) => handleTestimonialChange(index, 'name', e.target.value)}
-                        className="input-field w-full"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium mb-1">Role/Course</label>
-                      <input
-                        value={testimonial.role}
-                        onChange={(e) => handleTestimonialChange(index, 'role', e.target.value)}
-                        className="input-field w-full"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium mb-1">University</label>
-                      <input
-                        value={testimonial.uni}
-                        onChange={(e) => handleTestimonialChange(index, 'uni', e.target.value)}
-                        className="input-field w-full"
-                      />
-                    </div>
-                    <div className="md:col-span-2">
-                      <label className="block text-sm font-medium mb-1">Quote</label>
-                      <textarea
-                        value={testimonial.quote}
-                        onChange={(e) => handleTestimonialChange(index, 'quote', e.target.value)}
-                        className="input-field w-full h-24"
-                      />
-                    </div>
-                  </div>
-                </div>
-              ))}
-              <button onClick={addTestimonial} className="text-copper-600 font-medium hover:underline">
-                + Add Testimonial
-              </button>
-            </div>
-          )}
-        </div>
-      </div>
-    </div>
-  );
-};
 
 // --- Main App Component ---
 
 const App = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [theme, setTheme] = useState('light');
-  const [currentView, setCurrentView] = useState('landing'); // 'landing', 'apply', 'journey', 'admin'
-  
-  // Data State
-  const [stats, setStats] = useState(INITIAL_STATS);
-  const [partners, setPartners] = useState(INITIAL_PARTNERS);
-  const [testimonials, setTestimonials] = useState(INITIAL_TESTIMONIALS);
-
-  // Fetch Data from Server
-  useEffect(() => {
-    fetch('http://localhost:3001/api/data')
-      .then(res => {
-        if (res.ok) return res.json();
-        throw new Error('Network response was not ok');
-      })
-      .then(data => {
-        if (data.stats) setStats(data.stats);
-        if (data.partners) setPartners(data.partners);
-        if (data.testimonials) setTestimonials(data.testimonials);
-      })
-      .catch(err => console.log("Using default data (Server not running or fetch failed)"));
-  }, []);
-
-  const handleSaveData = () => {
-    fetch('http://localhost:3001/api/data', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ stats, partners, testimonials })
-    })
-    .then(res => res.json())
-    .then(data => {
-      if (data.success) alert('Data saved successfully!');
-      else alert('Failed to save.');
-    })
-    .catch(err => alert('Error saving data. Ensure the server is running on port 3001.'));
-  };
-
-  useEffect(() => {
-    const checkHash = () => {
-      if (window.location.hash === '#admin') {
-        setCurrentView('admin');
-      } else if (currentView === 'admin' && window.location.hash !== '#admin') {
-        setCurrentView('landing');
-      }
-    };
-
-    checkHash();
-    window.addEventListener('hashchange', checkHash);
-    return () => window.removeEventListener('hashchange', checkHash);
-  }, [currentView]);
+  const [currentView, setCurrentView] = useState('landing'); // 'landing', 'apply', 'journey'
 
   useEffect(() => {
     if (theme === 'dark') {
@@ -1400,21 +1033,6 @@ const App = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  if (currentView === 'admin') {
-    return (
-      <AdminView 
-        stats={stats} setStats={setStats}
-        partners={partners} setPartners={setPartners}
-        testimonials={testimonials} setTestimonials={setTestimonials}
-        onSave={handleSaveData}
-        onBack={() => {
-          window.location.hash = '';
-          setCurrentView('landing');
-        }}
-      />
-    );
-  }
-
   return (
     <div className="min-h-screen flex flex-col font-sans text-gray-900 dark:text-gray-100 bg-white dark:bg-noir-950 transition-colors duration-300">
       <TopBar />
@@ -1434,9 +1052,6 @@ const App = () => {
               <HomeView 
                 scrollToSection={scrollToSection} 
                 onJourneyClick={handleJourneyClick}
-                stats={stats}
-                partners={partners}
-                testimonials={testimonials}
               />
             </section>
             <section id="about">

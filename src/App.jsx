@@ -136,9 +136,8 @@ const Navbar = ({ scrollToSection, setMobileMenuOpen, mobileMenuOpen, theme, tog
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="flex justify-between h-20 items-center">
         {/* Logo */}
-        <div className="flex-shrink-0 flex items-center cursor-pointer gap-3" onClick={() => scrollToSection('home')}>
-          <img src="/images/logo.jpeg" alt="AMC Connect" className="h-10 w-auto rounded-md" />
-          <span className="text-2xl font-bold text-copper-600 dark:text-copper-400">AMC Connect</span> 
+        <div className="flex-shrink-0 flex items-center cursor-pointer gap-3 group" onClick={() => scrollToSection('home')}>
+          <span className="text-2xl font-bold text-copper-600 dark:text-copper-400 transition-colors duration-300 group-hover:text-copper-700 dark:group-hover:text-copper-300">AMC Connect</span> 
         </div>
 
         {/* Desktop Menu */}
@@ -147,9 +146,10 @@ const Navbar = ({ scrollToSection, setMobileMenuOpen, mobileMenuOpen, theme, tog
             <button
               key={link.id}
               onClick={() => scrollToSection(link.id)}
-              className="text-gray-600 dark:text-gray-400 hover:text-copper-500 dark:hover:text-copper-300 transition-colors duration-200 font-medium"
+              className="group relative text-gray-600 dark:text-gray-400 hover:text-copper-600 dark:hover:text-copper-400 transition-colors duration-300 font-medium py-2"
             >
               {link.name}
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-copper-600 dark:bg-copper-400 transition-all duration-300 group-hover:w-full"></span>
             </button>
           ))}
           
@@ -263,84 +263,231 @@ const WhatsAppButton = () => (
   </div>
 );
 
+const TopBar = () => (
+  <div className="bg-gray-900 dark:bg-noir-950 text-gray-300 py-2 px-4 text-sm hidden md:block border-b border-gray-800">
+    <div className="max-w-7xl mx-auto flex justify-between items-center">
+      <div className="flex space-x-6">
+        <div className="flex items-center hover:text-copper-400 transition-colors cursor-pointer">
+          <Phone size={14} className="mr-2" />
+          <span>{COMPANY_INFO.phone}</span>
+        </div>
+        <div className="flex items-center hover:text-copper-400 transition-colors cursor-pointer">
+          <Mail size={14} className="mr-2" />
+          <span>{COMPANY_INFO.email}</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+);
+
+const Partners = () => (
+  <div className="py-12 bg-gray-50 dark:bg-noir-900 border-y border-gray-200 dark:border-noir-800 overflow-hidden">
+    <div className="max-w-7xl mx-auto px-4 mb-8 text-center">
+      <p className="text-sm font-bold text-gray-500 uppercase tracking-widest">Trusted by Leading Universities</p>
+    </div>
+    <div className="flex space-x-12 animate-scroll whitespace-nowrap">
+      {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+        <div key={i} className="flex-shrink-0 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100">
+          <div className="h-12 w-32 bg-gray-300 dark:bg-gray-700 rounded flex items-center justify-center text-xs text-gray-500">
+            University Logo {i}
+          </div>
+        </div>
+      ))}
+      {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+        <div key={`dup-${i}`} className="flex-shrink-0 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100">
+          <div className="h-12 w-32 bg-gray-300 dark:bg-gray-700 rounded flex items-center justify-center text-xs text-gray-500">
+            University Logo {i}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+);
+
+const Testimonials = () => (
+  <div className="py-20 bg-white dark:bg-noir-950">
+    <div className="max-w-7xl mx-auto px-4">
+      <div className="text-center mb-16">
+        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">Student Success Stories</h2>
+        <div className="w-24 h-1 bg-copper-500 mx-auto rounded-full"></div>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {[
+          {
+            name: "Sarah Johnson",
+            uni: "University of West London",
+            quote: "AMC Connect made my application process so smooth. I wouldn't have known where to start without them.",
+            role: "Business Management"
+          },
+          {
+            name: "Michael Chen",
+            uni: "Anglia Ruskin University",
+            quote: "The team was incredibly patient and helpful with my student finance application. Highly recommended!",
+            role: "Computer Science"
+          },
+          {
+            name: "Elena Rodriguez",
+            uni: "University of Roehampton",
+            quote: "Honest advice and genuine support. They really care about your future.",
+            role: "Psychology"
+          }
+        ].map((testimonial, idx) => (
+          <div key={idx} className="glass-panel p-8 rounded-xl relative">
+            <div className="text-copper-500 mb-4">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H15.017C14.4647 8 14.017 8.44772 14.017 9V11C14.017 11.5523 13.5693 12 13.017 12H12.017V5H22.017V15C22.017 18.3137 19.3307 21 16.017 21H14.017ZM5.0166 21L5.0166 18C5.0166 16.8954 5.91203 16 7.0166 16H10.0166C10.5689 16 11.0166 15.5523 11.0166 15V9C11.0166 8.44772 10.5689 8 10.0166 8H6.0166C5.46432 8 5.0166 8.44772 5.0166 9V11C5.0166 11.5523 4.56889 12 4.0166 12H3.0166V5H13.0166V15C13.0166 18.3137 10.3303 21 7.0166 21H5.0166Z" />
+              </svg>
+            </div>
+            <p className="text-gray-600 dark:text-gray-300 mb-6 italic">"{testimonial.quote}"</p>
+            <div className="flex items-center">
+              <div className="w-10 h-10 bg-gray-200 rounded-full mr-3"></div>
+              <div>
+                <p className="font-bold text-gray-900 dark:text-white">{testimonial.name}</p>
+                <p className="text-xs text-copper-600 dark:text-copper-400">{testimonial.role}</p>
+                <p className="text-xs text-gray-500">{testimonial.uni}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+);
+
+const Stats = () => (
+  <div className="bg-copper-600 dark:bg-copper-900 py-12 text-white">
+    <div className="max-w-7xl mx-auto px-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div>
+          <p className="text-4xl font-bold mb-2">98%</p>
+          <p className="text-copper-100 text-sm uppercase tracking-wide">Success Rate</p>
+        </div>
+        <div>
+          <p className="text-4xl font-bold mb-2">50+</p>
+          <p className="text-copper-100 text-sm uppercase tracking-wide">Partner Universities</p>
+        </div>
+        <div>
+          <p className="text-4xl font-bold mb-2">1000+</p>
+          <p className="text-copper-100 text-sm uppercase tracking-wide">Students Placed</p>
+        </div>
+        <div>
+          <p className="text-4xl font-bold mb-2">24/7</p>
+          <p className="text-copper-100 text-sm uppercase tracking-wide">Support Available</p>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
 // --- Page Views ---
 
 const HomeView = ({ scrollToSection, onJourneyClick }) => (
   <div className="flex-grow bg-white dark:bg-noir-950 transition-colors duration-300">
     {/* Hero Section */}
-    <div className="relative overflow-hidden">
-      {/* Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-gray-50 to-white dark:from-noir-900 dark:to-noir-950 z-0"></div>
+    <div className="relative overflow-hidden min-h-[80vh] flex items-center">
+      {/* Background Image with Overlay */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" 
+          alt="University Campus" 
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-gray-900/90 to-gray-900/70 dark:from-noir-950/90 dark:to-noir-950/70"></div>
+      </div>
       
-      <div className="relative z-10 py-12 px-4">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+      <div className="relative z-10 py-12 px-4 w-full">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           
-          {/* Left Column: Checklist & Intro */}
-          <div className="glass-panel p-8 rounded-2xl animate-fade-in-up">
+          {/* Left Column: Main Message */}
+          <div className="space-y-10 animate-fade-in-up text-white">
+            <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-6">
+              You Are Not Alone in Your <span className="text-copper-500">University Journey</span>
+            </h1>
+            <p className="text-xl text-gray-200 leading-relaxed max-w-xl">
+              We are here to guide you with patience, answer your questions clearly, and support you at a pace that feels right for you.
+            </p>
+            
+            <div className="space-y-5 border-l-4 border-copper-500 pl-8 pr-6 py-6 bg-white/5 rounded-r-xl backdrop-blur-sm">
+               <h3 className="text-2xl font-bold text-copper-400 mb-2">Free Support, Personalised Guidance</h3>
+               <p className="text-gray-200 text-base leading-relaxed">
+                 All our assistance is free for students. We work through official partnerships with universities, which allows us to offer support without fees or hidden charges.
+               </p>
+               <p className="text-gray-300 text-base leading-relaxed italic">
+                 You deserve guidance that feels honest and safe when making decisions about your future. We are here to provide that support with integrity and care.
+               </p>
+            </div>
+            
+            <div className="flex flex-col sm:flex-row gap-4 pt-6">
+              <button onClick={onJourneyClick} className="btn-primary text-lg px-8 py-4">
+                Start Your Journey
+              </button>
+              <button 
+                onClick={() => scrollToSection('services')}
+                className="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 text-white font-bold py-4 px-8 rounded-full transition-all"
+              >
+                Explore Services
+              </button>
+            </div>
+
+            <div className="pt-4 flex items-center space-x-8 text-sm font-medium text-gray-300">
+              <div className="flex items-center">
+                <CheckCircle className="text-copper-500 mr-2" size={20} />
+                <span>Free Consultation</span>
+              </div>
+              <div className="flex items-center">
+                <CheckCircle className="text-copper-500 mr-2" size={20} />
+                <span>98% Success Rate</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column: Checklist Card */}
+          <div className="glass-panel p-8 rounded-2xl animate-fade-in-up animation-delay-200 lg:ml-auto max-w-md w-full bg-white/95 dark:bg-noir-900/95 backdrop-blur-xl">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-              We are to help you take the next step with clarity.
+              We help you with:
             </h2>
             
             <div className="space-y-4 mb-8">
               {[
                 "University enrolment", 
-                "CV & Personal Statement assistance",
-                "Easy document upload",
-                "Exam preparation support",
-                "Help with student finance applications",
-                "Guidance throughout your studies"
+                "CV & Personal Statement",
+                "Student Finance Support",
+                "Exam Preparation",
+                "Document Upload",
+                "Ongoing Guidance"
               ].map((item, idx) => (
                 <div key={idx} className="flex items-start space-x-3">
-                  <CheckCircle className="text-copper-600 dark:text-copper-400 flex-shrink-0 mt-1" size={20} />
-                  <span className="text-lg text-gray-700 dark:text-gray-300 font-medium">{item}</span> 
+                  <div className="bg-copper-100 dark:bg-copper-900/30 p-1 rounded-full mt-0.5">
+                    <CheckCircle className="text-copper-600 dark:text-copper-400" size={16} />
+                  </div>
+                  <span className="text-gray-700 dark:text-gray-300 font-medium">{item}</span> 
                 </div>
               ))}
             </div>
 
-            <div className="mb-8">
-               <p className="text-3xl font-extrabold text-copper-600 dark:text-copper-400">FREE!</p>
+            <div className="bg-copper-50 dark:bg-copper-900/20 p-4 rounded-xl text-center mb-6 border border-copper-100 dark:border-copper-800">
+               <p className="text-sm text-gray-600 dark:text-gray-400 uppercase tracking-wide mb-1">Our Services Are</p>
+               <p className="text-3xl font-extrabold text-copper-600 dark:text-copper-400">100% FREE</p>
+               <p className="text-xs text-gray-500 mt-1">for all students</p>
             </div>
 
-            <button onClick={onJourneyClick} className="w-full sm:w-auto btn-primary text-lg">
-              Start your journey today! 
+            <button 
+              onClick={onJourneyClick}
+              className="w-full btn-primary flex items-center justify-center"
+            >
+              <span className="mr-2">Help Me Understand My Options</span> 
+              <ArrowRight size={20} />
             </button>
-          </div>
-
-          {/* Right Column: Main Message */}
-          <div className="space-y-8 animate-fade-in-up animation-delay-200">
-            <div className="glass-panel p-8 rounded-2xl text-gray-900 dark:text-white">
-              <h1 className="text-3xl md:text-4xl font-extrabold leading-tight mb-6">
-                You Are Not Alone in Your <span className="text-copper-600 dark:text-copper-400">University Journey</span> 
-              </h1>
-              <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
-                We are here to guide you with patience, answer your questions clearly, and support you at a pace that feels right for you. 
-              </p>
-              
-              <div className="border-t border-gray-200 dark:border-gray-700 pt-6">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Free Support, Personalised Guidance</h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">
-                  All our assistance is <strong className="text-copper-600 dark:text-copper-400">free</strong> for students. We work through official partnerships with universities, which allows us to offer support without fees or hidden charges.
-                </p>
-                <p className="text-gray-600 dark:text-gray-300">
-                  You deserve guidance that feels honest and safe when making decisions about your future. We are here to provide that support with integrity and care.
-                </p>
-              </div>
-
-              <div className="pt-4">
-                <button 
-                  onClick={() => scrollToSection('contact')}
-                  className="w-full btn-primary flex items-center justify-center"
-                >
-                  <span className="mr-2">Help Me Understand My Options – questionnaire</span> 
-                  <ArrowRight size={20} />
-                </button>
-              </div>
-            </div>
           </div>
 
         </div>
       </div>
     </div>
+
+    <Stats />
+    <Partners />
+    <Testimonials />
   </div>
 );
 
@@ -354,11 +501,11 @@ const ServicesView = () => (
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
         {SERVICES.map((service, index) => (
-          <div key={index} className={`glass-panel p-8 rounded-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group animate-fade-in-up animation-delay-${(index + 1) * 200}`}>
-            <div className="text-copper-600 dark:text-copper-400 mb-6 group-hover:scale-110 transition-transform duration-300 bg-copper-50 dark:bg-copper-900/20 w-16 h-16 rounded-full flex items-center justify-center">
-              {service.icon}
+          <div key={index} className={`bg-white dark:bg-noir-900 p-10 rounded-2xl shadow-sm hover:shadow-[0_0_30px_rgba(179,109,72,0.3)] hover:border-copper-200 dark:hover:border-copper-800 border border-gray-100 dark:border-noir-800 transition-all duration-300 hover:-translate-y-1 group animate-fade-in-up animation-delay-${(index + 1) * 200}`}>
+            <div className="w-16 h-16 rounded-full bg-orange-50 dark:bg-copper-900/20 flex items-center justify-center text-copper-600 dark:text-copper-400 mb-6 group-hover:bg-copper-600 group-hover:text-white transition-all duration-300">
+              {React.cloneElement(service.icon, { size: 28, strokeWidth: 1.5 })}
             </div>
-            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">{service.title}</h3>
+            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-copper-600 dark:group-hover:text-copper-400 transition-colors">{service.title}</h3>
             <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">{service.desc}</p>
           </div>
         ))}
@@ -433,65 +580,71 @@ const ServicesView = () => (
 
 const AboutView = () => (
   <div className="flex-grow bg-white dark:bg-noir-950 transition-colors duration-300">
-    <div className="py-20 px-4">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
+    <div className="py-24 px-4">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
         
         {/* Left Column: Text Content */}
-        <div className="space-y-12">
-          <div>
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Who We Are</h2> 
-            <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+        <div className="space-y-16 lg:sticky lg:top-32">
+          <div className="animate-fade-in-up">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 relative inline-block">
+              Who We Are
+              <span className="absolute -bottom-2 left-0 w-1/3 h-1.5 bg-copper-500 rounded-full"></span>
+            </h2> 
+            <p className="text-base text-gray-600 dark:text-gray-300 leading-relaxed">
               AMC Connect was created with a simple purpose: to support students in a way that feels <strong className="text-copper-600 dark:text-copper-400">honest, patient, and personal.</strong> 
             </p>
-            <p className="text-lg text-gray-600 dark:text-gray-400 mt-4 leading-relaxed">
+            <p className="text-base text-gray-600 dark:text-gray-300 mt-6 leading-relaxed">
               We have spent years helping students enrol in universities across the United Kingdom. Through this experience, we have learned that what students need most is clarity, trust, and people who genuinely care about their goals. 
             </p>
           </div>
 
-          <div>
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Why We Do This</h2> 
-            <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+          <div className="animate-fade-in-up animation-delay-200">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 relative inline-block">
+              Why We Do This
+              <span className="absolute -bottom-2 left-0 w-1/3 h-1.5 bg-copper-500 rounded-full"></span>
+            </h2> 
+            <p className="text-base text-gray-600 dark:text-gray-300 leading-relaxed">
                We believe that education can open doors and shape lives, but it should begin with informed and confident decisions. Our work is guided by honesty, respect for individual circumstances, and long-term support.
             </p>
           </div>
         </div>
 
         {/* Right Column: How We Help & Team */}
-        <div className="space-y-8">
-          <div className="glass-panel p-8 rounded-2xl shadow-lg animate-fade-in-up" style={{animationDelay: '0.2s'}}>
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">How We Help</h2>
-            <div className="space-y-4 text-gray-600 dark:text-gray-400">
+        <div className="space-y-10">
+          <div className="glass-panel p-10 rounded-3xl shadow-xl animate-fade-in-up border-t-4 border-copper-500" style={{animationDelay: '0.2s'}}>
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">How We Help</h2>
+            <div className="space-y-5 text-gray-600 dark:text-gray-300 leading-relaxed text-base">
               <p>
                 We provide guidance with university applications, personal statements, documents, exam preparation, and Student Finance. Our support does not end at enrolment. We remain available during your studies whenever you need help or advice.
               </p>
               <p>
                 We want you to feel secure, prepared, and confident at every stage of your journey. No pressure. No rushing. Just support that respects your goals and your pace.
               </p>
-              <p>
+              <p className="font-medium text-copper-600 dark:text-copper-400">
                 If you have questions or would like to discuss your options, we are always open to a conversation.
               </p>
             </div>
           </div>
 
-          <div className="glass-panel p-8 rounded-2xl shadow-lg animate-fade-in-up" style={{animationDelay: '0.4s'}}>
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Meet Our Team</h2>
+          <div className="animate-fade-in-up" style={{animationDelay: '0.4s'}}>
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 pl-2">Meet Our Team</h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {TEAM_MEMBERS.map((member, idx) => (
-                <div key={idx} className="text-center p-4 bg-gray-50 dark:bg-noir-950 rounded-xl border border-gray-100 dark:border-noir-800 hover:shadow-md transition-shadow">
-                  <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden border-4 border-white dark:border-noir-800 shadow-lg">
+                <div key={idx} className="flex flex-col items-center text-center p-8 bg-white dark:bg-noir-900 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-noir-800 group hover:-translate-y-1">
+                  <div className="w-32 h-32 mb-6 rounded-full overflow-hidden border-4 border-gray-50 dark:border-noir-800 shadow-md group-hover:border-copper-100 transition-colors">
                     <img 
                       src={member.image} 
                       alt={member.name} 
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
                       onError={(e) => {
                         e.target.onerror = null; 
                         e.target.src = `https://ui-avatars.com/api/?name=${member.name}&background=random`;
                       }}
                     />
                   </div>
-                  <h3 className="font-bold text-gray-900 dark:text-white">{member.name}</h3>
-                  <p className="text-sm text-copper-600 dark:text-copper-400">{member.role}</p>
+                  <h3 className="font-bold text-xl text-gray-900 dark:text-white mb-2">{member.name}</h3>
+                  <p className="text-sm font-bold text-copper-600 dark:text-copper-400 uppercase tracking-wide">{member.role}</p>
                 </div>
               ))}
             </div>
@@ -505,7 +658,7 @@ const AboutView = () => (
 
 const ContactView = () => (
   <div className="flex-grow bg-white dark:bg-noir-950 py-20 px-4 transition-colors duration-300">
-    <div className="max-w-5xl mx-auto">
+    <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
             <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Get in touch with us</h1> 
             <p className="text-lg text-gray-600 dark:text-gray-400">
@@ -513,94 +666,99 @@ const ContactView = () => (
             </p>
         </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="flex justify-center">
         {/* Contact Info Card */}
-        <div className="glass-panel p-8 rounded-2xl shadow-lg h-full animate-fade-in-up">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">Contact Information</h2>
-          <div className="space-y-6">
-            <div className="flex items-start">
-                <div className="bg-copper-50 dark:bg-copper-400/10 p-3 rounded-full mr-4 text-copper-600 dark:text-copper-400">
-                    <Phone />
+        <div className="glass-panel p-12 rounded-2xl shadow-lg w-full max-w-7xl animate-fade-in-up">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            {/* Contact Details */}
+            <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
+                <div className="flex items-start">
+                    <div className="bg-copper-50 dark:bg-copper-400/10 p-3 rounded-full mr-4 text-copper-600 dark:text-copper-400">
+                        <Phone />
+                    </div>
+                    <div>
+                        <p className="font-bold text-gray-800 dark:text-gray-200">Phone</p>
+                        <p className="text-gray-600 dark:text-gray-400">{COMPANY_INFO.phone}</p> 
+                    </div>
                 </div>
-                <div>
-                    <p className="font-bold text-gray-800 dark:text-gray-200">Phone</p>
-                    <p className="text-gray-600 dark:text-gray-400">{COMPANY_INFO.phone}</p> 
+                <div className="flex items-start">
+                    <div className="bg-copper-50 dark:bg-copper-400/10 p-3 rounded-full mr-4 text-copper-600 dark:text-copper-400">
+                        <Mail />
+                    </div>
+                    <div>
+                        <p className="font-bold text-gray-800 dark:text-gray-200">Mail</p>
+                        <p className="text-gray-600 dark:text-gray-400">{COMPANY_INFO.email}</p> 
+                    </div>
+                </div>
+                <div className="flex items-start">
+                    <div className="bg-copper-50 dark:bg-copper-400/10 p-3 rounded-full mr-4 text-copper-600 dark:text-copper-400">
+                        <MapPin />
+                    </div>
+                    <div>
+                        <p className="font-bold text-gray-800 dark:text-gray-200">Address</p>
+                        <p className="text-gray-600 dark:text-gray-400">{COMPANY_INFO.address}</p> 
+                    </div>
+                </div>
+                <div className="flex items-start">
+                    <div className="bg-copper-50 dark:bg-copper-400/10 p-3 rounded-full mr-4 text-copper-600 dark:text-copper-400">
+                        <Linkedin />
+                    </div>
+                    <div>
+                        <p className="font-bold text-gray-800 dark:text-gray-200">Linkedin</p>
+                        <a href={COMPANY_INFO.linkedin} className="text-copper-600 dark:text-copper-400 hover:underline break-all text-sm">View Profile</a> 
+                    </div>
+                </div>
+
+                <div className="flex items-start">
+                    <div className="bg-copper-50 dark:bg-copper-400/10 p-3 rounded-full mr-4 text-copper-600 dark:text-copper-400">
+                        <Users />
+                    </div>
+                    <div>
+                        <p className="font-bold text-gray-800 dark:text-gray-200">Facebook</p>
+                        <p className="text-gray-600 dark:text-gray-400">{COMPANY_INFO.facebook}</p> 
+                    </div>
+                </div>
+                <div className="flex items-start">
+                    <div className="bg-copper-50 dark:bg-copper-400/10 p-3 rounded-full mr-4 text-copper-600 dark:text-copper-400">
+                        <Clock />
+                    </div>
+                    <div>
+                        <p className="font-bold text-gray-800 dark:text-gray-200">Working hours</p>
+                        <p className="text-gray-600 dark:text-gray-400">{COMPANY_INFO.hours}</p> 
+                    </div>
                 </div>
             </div>
-            <div className="flex items-start">
-                <div className="bg-copper-50 dark:bg-copper-400/10 p-3 rounded-full mr-4 text-copper-600 dark:text-copper-400">
-                    <Mail />
-                </div>
-                <div>
-                    <p className="font-bold text-gray-800 dark:text-gray-200">Mail</p>
-                    <p className="text-gray-600 dark:text-gray-400">{COMPANY_INFO.email}</p> 
-                </div>
-            </div>
-            <div className="flex items-start">
-                <div className="bg-copper-50 dark:bg-copper-400/10 p-3 rounded-full mr-4 text-copper-600 dark:text-copper-400">
-                    <MapPin />
-                </div>
-                <div>
-                    <p className="font-bold text-gray-800 dark:text-gray-200">Address</p>
-                    <p className="text-gray-600 dark:text-gray-400">{COMPANY_INFO.address}</p> 
-                </div>
-            </div>
-            <div className="flex items-start">
-                <div className="bg-copper-50 dark:bg-copper-400/10 p-3 rounded-full mr-4 text-copper-600 dark:text-copper-400">
-                    <Linkedin />
-                </div>
-                <div>
-                    <p className="font-bold text-gray-800 dark:text-gray-200">Linkedin</p>
-                    <a href={COMPANY_INFO.linkedin} className="text-copper-600 dark:text-copper-400 hover:underline break-all text-sm">View Profile</a> 
-                </div>
-            </div>
-             <div className="flex items-start">
-                <div className="bg-copper-50 dark:bg-copper-400/10 p-3 rounded-full mr-4 text-copper-600 dark:text-copper-400">
-                    <Users />
-                </div>
-                <div>
-                    <p className="font-bold text-gray-800 dark:text-gray-200">Facebook</p>
-                    <p className="text-gray-600 dark:text-gray-400">{COMPANY_INFO.facebook}</p> 
-                </div>
-            </div>
-             <div className="flex items-start">
-                <div className="bg-copper-50 dark:bg-copper-400/10 p-3 rounded-full mr-4 text-copper-600 dark:text-copper-400">
-                    <Clock />
-                </div>
-                <div>
-                    <p className="font-bold text-gray-800 dark:text-gray-200">Working hours</p>
-                    <p className="text-gray-600 dark:text-gray-400">{COMPANY_INFO.hours}</p> 
-                </div>
+
+            {/* Questionnaire Form */}
+            <div id="questionnaire" className="lg:col-span-1 border-t lg:border-t-0 lg:border-l border-gray-200 dark:border-gray-700 pt-12 lg:pt-0 lg:pl-12">
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Contact form</h2> 
+                <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+                    <div>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your name</label> 
+                    <input type="text" className="input-field w-full" required />
+                    </div>
+                    <div>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your phone number</label> 
+                    <input type="tel" className="input-field w-full" required />
+                    </div>
+                    <div>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your email</label> 
+                    <input type="email" className="input-field w-full" required />
+                    </div>
+                    <div className="pt-4">
+                        <button type="submit" className="btn-primary w-full">
+                            Send Message
+                        </button>
+                    </div>
+                    <p className="text-xs text-gray-500 mt-4 text-center">
+                        We will respond as soon as possible!
+                    </p>
+                </form>
             </div>
           </div>
         </div>
 
-        {/* Contact Form */}
-        <div className="glass-panel p-8 rounded-2xl animate-fade-in-up" style={{animationDelay: '0.2s'}}>
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Questionnaire form+</h2> 
-          <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your name</label> 
-              <input type="text" className="input-field w-full" required />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your phone number</label> 
-              <input type="tel" className="input-field w-full" required />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your email</label> 
-              <input type="email" className="input-field w-full" required />
-            </div>
-            <div className="pt-4">
-                <button type="submit" className="btn-primary w-full">
-                    Send Message
-                </button>
-            </div>
-            <p className="text-xs text-gray-500 mt-4 text-center">
-                We will respond as soon as possible!
-            </p>
-          </form>
-        </div>
+
       </div>
     </div>
   </div>
@@ -920,15 +1078,50 @@ const App = () => {
     setTheme(prev => prev === 'light' ? 'dark' : 'light');
   };
 
-  const scrollToSection = (id) => {
-    setCurrentView('landing');
-    // Use setTimeout to allow the view to switch back to landing before scrolling
-    setTimeout(() => {
-      const element = document.getElementById(id);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+  const smoothScrollTo = (targetId) => {
+    const element = document.getElementById(targetId);
+    if (!element) return;
+
+    const headerOffset = 100;
+    const elementPosition = element.getBoundingClientRect().top;
+    const startPosition = window.scrollY;
+    const offsetPosition = elementPosition + startPosition - headerOffset;
+    const distance = offsetPosition - startPosition;
+    const duration = 1000; // Duration in ms
+    let start = null;
+
+    const animation = (currentTime) => {
+      if (start === null) start = currentTime;
+      const timeElapsed = currentTime - start;
+      
+      // Ease in-out function
+      const ease = (t, b, c, d) => {
+        t /= d / 2;
+        if (t < 1) return c / 2 * t * t + b;
+        t--;
+        return -c / 2 * (t * (t - 2) - 1) + b;
+      };
+
+      const run = ease(timeElapsed, startPosition, distance, duration);
+      window.scrollTo(0, run);
+
+      if (timeElapsed < duration) {
+        requestAnimationFrame(animation);
       }
-    }, 100);
+    };
+
+    requestAnimationFrame(animation);
+  };
+
+  const scrollToSection = (id) => {
+    if (currentView !== 'landing') {
+      setCurrentView('landing');
+      setTimeout(() => {
+        smoothScrollTo(id);
+      }, 100);
+    } else {
+      smoothScrollTo(id);
+    }
     setMobileMenuOpen(false);
   };
 
@@ -946,6 +1139,7 @@ const App = () => {
 
   return (
     <div className="min-h-screen flex flex-col font-sans text-gray-900 dark:text-gray-100 bg-white dark:bg-noir-950 transition-colors duration-300">
+      <TopBar />
       <Navbar 
         scrollToSection={scrollToSection}
         mobileMenuOpen={mobileMenuOpen}

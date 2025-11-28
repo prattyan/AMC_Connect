@@ -388,11 +388,6 @@ const HomeView = ({ scrollToSection, onJourneyClick }) => (
     <div className="relative overflow-hidden min-h-[80vh] flex items-center">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
-        <img 
-          src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" 
-          alt="University Campus" 
-          className="w-full h-full object-cover"
-        />
         <div className="absolute inset-0 bg-gradient-to-r from-gray-900/90 to-gray-900/70 dark:from-noir-950/90 dark:to-noir-950/70"></div>
       </div>
       

@@ -647,15 +647,15 @@ const ContactView = () => {
                 <form ref={form} className="space-y-4" onSubmit={sendEmail}>
                     <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your name</label> 
-                    <input type="text" name="user_name" className="input-field w-full" required />
+                    <input type="text" name="name" className="input-field w-full" required />
                     </div>
                     <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your phone number</label> 
-                    <input type="tel" name="user_phone" className="input-field w-full" required />
+                    <input type="tel" name="phone" className="input-field w-full" required />
                     </div>
                     <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your email</label> 
-                    <input type="email" name="user_email" className="input-field w-full" required />
+                    <input type="email" name="email" className="input-field w-full" required />
                     </div>
                     <div className="pt-4">
                         <button type="submit" className="btn-primary w-full">
@@ -921,12 +921,12 @@ const ApplyView = ({ onBack }) => {
           
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Surname <span className="text-red-500">*</span></label>
-            <input type="text" name="last_name" className="input-field w-full" required />
+            <input type="text" name="surname" className="input-field w-full" required />
           </div>
           
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email <span className="text-red-500">*</span></label>
-            <input type="email" name="user_email" className="input-field w-full" required />
+            <input type="email" name="email" className="input-field w-full" required />
           </div>
           
           <div>
@@ -935,7 +935,7 @@ const ApplyView = ({ onBack }) => {
               <span className="inline-flex items-center px-3 rounded-l-lg border border-r-0 border-gray-300 dark:border-noir-800 bg-gray-100 dark:bg-noir-800 text-gray-500 dark:text-gray-400 text-sm">
                 🇬🇧
               </span>
-              <input type="tel" name="user_phone" placeholder="07400 123456" className="input-field w-full rounded-l-none" required />
+              <input type="tel" name="phone" placeholder="07400 123456" className="input-field w-full rounded-l-none" required />
             </div>
           </div>
           
@@ -946,7 +946,7 @@ const ApplyView = ({ onBack }) => {
           
           <div className="flex items-start pt-2">
             <div className="flex items-center h-5">
-              <input id="gdpr" name="gdpr_consent" type="checkbox" className="w-4 h-4 text-copper-600 border-gray-300 rounded focus:ring-copper-500 dark:focus:ring-copper-400 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600" required />
+              <input id="gdpr" name="gdpr" type="checkbox" className="w-4 h-4 text-copper-600 border-gray-300 rounded focus:ring-copper-500 dark:focus:ring-copper-400 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600" required />
             </div>
             <div className="ml-3 text-sm">
               <label htmlFor="gdpr" className="font-medium text-gray-700 dark:text-gray-300">GDPR <span className="text-red-500">*</span></label>

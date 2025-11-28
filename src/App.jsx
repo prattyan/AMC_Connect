@@ -19,9 +19,13 @@ import {
   BookOpen,
   ClipboardList,
   Headset,
-  Building2,
-  CalendarCheck
+  Building2
 } from 'lucide-react';
+
+import LegalCookie from './components/LegalCookie';
+import LegalPrivacy from './components/LegalPrivacy';
+import LegalTerms from './components/LegalTerms';
+import LegalAccessibility from './components/LegalAccessibility';
 
 // --- Data & Content Configuration ---
 
@@ -208,7 +212,7 @@ const Navbar = ({ scrollToSection, setMobileMenuOpen, mobileMenuOpen, theme, tog
   </nav>
 );
 
-const Footer = () => (
+const Footer = ({ onLinkClick }) => (
   <footer className="bg-gray-900 dark:bg-noir-950 text-white pt-12 pb-8 border-t border-gray-800 dark:border-noir-800 transition-colors duration-300">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -221,6 +225,13 @@ const Footer = () => (
             <a href={COMPANY_INFO.linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-copper-400 transition-colors">
               <Linkedin />
             </a>
+          </div>
+          
+          <div className="mt-6 grid grid-cols-2 gap-x-4 gap-y-2 border-t border-gray-800 pt-4">
+            <button onClick={() => onLinkClick('privacy-policy')} className="text-gray-400 hover:text-copper-400 text-left text-sm transition-colors">Privacy Policy</button>
+            <button onClick={() => onLinkClick('cookie-policy')} className="text-gray-400 hover:text-copper-400 text-left text-sm transition-colors">Cookie Policy</button>
+            <button onClick={() => onLinkClick('terms-conditions')} className="text-gray-400 hover:text-copper-400 text-left text-sm transition-colors">Terms & Conditions</button>
+            <button onClick={() => onLinkClick('accessibility-statement')} className="text-gray-400 hover:text-copper-400 text-left text-sm transition-colors">Accessibility Statement</button>
           </div>
         </div>
         <div>
@@ -344,7 +355,7 @@ const HomeView = ({ scrollToSection, onJourneyClick }) => (
             
             <div className="space-y-4 mb-8">
               {[
-                "University enrolment", 
+                "University Enrolment", 
                 "CV & Personal Statement",
                 "Student Finance Support",
                 "Exam Preparation",
@@ -1089,6 +1100,12 @@ const App = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const handleLinkClick = (view) => {
+    setCurrentView(view);
+    setMobileMenuOpen(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <div className="min-h-screen flex flex-col font-sans text-gray-900 dark:text-gray-100 bg-white dark:bg-noir-950 transition-colors duration-300">
       <TopBar />
@@ -1102,7 +1119,7 @@ const App = () => {
       />
       
       <main className="flex-grow flex flex-col">
-        {currentView === 'landing' ? (
+        {currentView === 'landing' && (
           <>
             <section id="home">
               <HomeView 
@@ -1120,16 +1137,18 @@ const App = () => {
               <ContactView />
             </section>
           </>
-        ) : currentView === 'apply' ? (
-          <ApplyView onBack={() => scrollToSection('home')} />
-        ) : (
-          <JourneyView onBack={() => scrollToSection('home')} />
         )}
+        {currentView === 'apply' && <ApplyView onBack={() => scrollToSection('home')} />}
+        {currentView === 'journey' && <JourneyView onBack={() => scrollToSection('home')} />}
+        {currentView === 'cookie-policy' && <LegalCookie onBack={() => scrollToSection('home')} />}
+        {currentView === 'privacy-policy' && <LegalPrivacy onBack={() => scrollToSection('home')} />}
+        {currentView === 'terms-conditions' && <LegalTerms onBack={() => scrollToSection('home')} />}
+        {currentView === 'accessibility-statement' && <LegalAccessibility onBack={() => scrollToSection('home')} />}
       </main>
 
       <WhatsAppButton />
 
-      <Footer />
+      <Footer onLinkClick={handleLinkClick} />
     </div>
   );
 };

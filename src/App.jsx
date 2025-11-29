@@ -19,7 +19,8 @@ import {
   BookOpen,
   ClipboardList,
   Headset,
-  Building2
+  Building2,
+  Facebook
 } from 'lucide-react';
 
 import LegalCookie from './components/LegalCookie';
@@ -35,7 +36,7 @@ const COMPANY_INFO = {
   email: "info@amc-connect.co.uk", 
   address: "Unit 3, KD Tower, Cotterells, Hemel Hempstead, HP1 1FW", 
   linkedin: "https://www.linkedin.com/company/amc-connect-uk/?viewAsMember=true", 
-  facebook: "(will provide soon)",
+  facebook: "https://www.facebook.com/profile.php?id=61584295236007",
   companyNumber: "16252583", 
   hours: "Monday to Saturday 10:00 - 18:00" 
 };
@@ -224,6 +225,9 @@ const Footer = ({ onLinkClick }) => (
           <div className="flex space-x-4">
             <a href={COMPANY_INFO.linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-copper-400 transition-colors">
               <Linkedin />
+            </a>
+            <a href={COMPANY_INFO.facebook} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-copper-400 transition-colors">
+              <Facebook />
             </a>
           </div>
         </div>
@@ -634,11 +638,11 @@ const ContactView = () => {
 
                 <div className="flex items-start">
                     <div className="bg-copper-50 dark:bg-copper-400/10 p-3 rounded-full mr-4 text-copper-600 dark:text-copper-400">
-                        <Users />
+                        <Facebook />
                     </div>
                     <div>
                         <p className="font-bold text-gray-800 dark:text-gray-200">Facebook</p>
-                        <p className="text-gray-600 dark:text-gray-400">{COMPANY_INFO.facebook}</p> 
+                        <a href={COMPANY_INFO.facebook} target="_blank" rel="noopener noreferrer" className="text-copper-600 dark:text-copper-400 hover:underline break-all text-sm">View Profile</a> 
                     </div>
                 </div>
                 <div className="flex items-start">
